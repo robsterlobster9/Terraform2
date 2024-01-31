@@ -1,0 +1,32 @@
+environments:
+  vpc:
+    name: 'VPC and Network'
+    templateName: 'Uri Wf template'
+  db:
+    name: DB
+    templateName: 'Uri Wf template'
+    needs:
+      - vpc
+  eks:
+    name: EKS
+    templateName: 'Uri Wf template'
+    needs:
+      - vpc
+  service1:
+    name: 'Billing Service'
+    templateName: 'Uri Wf template'
+    needs:
+      - db
+      - eks
+  service2:
+    name: 'Configuration Service'
+    templateName: 'Uri Wf template'
+    needs:
+      - db
+      - eks
+  service3:
+    name: 'Notification Service'
+    templateName: 'Uri Wf template'
+    needs:
+      - db
+      - eks
